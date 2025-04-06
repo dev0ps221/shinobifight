@@ -126,6 +126,14 @@ k.defineConstants       = () => {
         'SUBTITLE'              : "A SHINOBI FIGHT GAME",
         'SELECT_CHARACTER'      : "CHOOSE YOUR FIGHTER",
     }
+    k.CHARACTERS            =   {
+        'FIGHTER'           : 'Fighter',
+        'SHINOBI'           : 'Shinobi',
+    }
+    k.CHARACTER_SPRITES     =   {
+        'FIGHTER'           : 'Fighter_idle',
+        'SHINOBI'           : 'Shinobi_idle',
+    }
 
 } 
 k.optionIsSet           = (name) => {

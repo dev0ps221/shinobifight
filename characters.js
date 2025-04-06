@@ -74,3 +74,10 @@ k.makeCharacter = (data)=>{
     )
     return character
 }
+k.switchCursorSprite = (cursor,charactername) => {
+    spritename = k.CHARACTERS[charactername]
+    if(spritename)
+    {
+
+    }
+}
