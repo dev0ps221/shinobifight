@@ -197,7 +197,7 @@ k.makeCharacter = (data,parent=null)=>{
                                 pos(character.pos.x + xPos - (character.width/2),character.pos.y),
                                 body(),
                                 lifespan(1, {
-                                    fade: 0.5 // it start fading 0.5 second after time
+                                    fade: 0.25 // it start fading 0.5 second after time
                                 }),
                                 character.playername+'attack_1'
                             ]
@@ -226,7 +226,7 @@ k.makeCharacter = (data,parent=null)=>{
                                 pos(character.pos.x + xPos - (character.width/2),character.pos.y),
                                 body(),
                                 lifespan(1, {
-                                    fade: 0.5 // it start fading 0.5 second after time
+                                    fade: 0.25 // it start fading 0.5 second after time
                                 }),
                                 character.playername+'attack_2'
                             ]
@@ -255,7 +255,7 @@ k.makeCharacter = (data,parent=null)=>{
                                 pos(character.pos.x + xPos - (character.width/2),character.pos.y),
                                 body(),
                                 lifespan(1, {
-                                    fade: 0.5 // it start fading 0.5 second after time
+                                    fade: 0.25 // it start fading 0.5 second after time
                                 }),
                                 character.playername+'attack_3'
                             ]
