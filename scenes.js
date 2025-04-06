@@ -74,15 +74,15 @@ k.SCENES = {
         
     },
     "fight" : () => {
-        setTimeout(()=>{
-            camScale(1.02)
-            setTimeout(()=>{
-                camScale(1.04)
-                setTimeout(()=>{
-                    camScale(1.08)
-                },800)
-            },400)
-        },200)
+        // setTimeout(()=>{
+        //     camScale(1.02)
+        //     setTimeout(()=>{
+        //         camScale(1.04)
+        //         setTimeout(()=>{
+        //             camScale(1.08)
+        //         },800)
+        //     },400)
+        // },200)
         k.winner = null
         const background = add([
             sprite("warzone"),
@@ -115,22 +115,52 @@ k.SCENES = {
         k.player_2 = player_2
         player_2.dataFlipX = true;
         player_2.flipX = true;
-        
+        k.player_1_health_bar_container = add(
+            [
+                rect(500,70),
+                area(),
+                outline(5),
+                pos(90,20),
+                color(200,0,0)
+            ]
+        )
+        k.player_1_health = k.player_1_health_bar_container.add(
+            [
+                rect(500 ,60),
+                area(),
+                outline(5),
+                pos(0,
+                    5),
+                color(0,200,0)
+            ]
+        )
+        k.player_2_health_bar_container = add(
+            [
+                rect(500,70),
+                area(),
+                outline(5),
+                pos(k.LAYOUT.width - 500 -90,20),
+                color(200,0,0)
+            ]
+        )
+        k.player_2_health = k.player_2_health_bar_container.add(
+            [
+                rect(500 ,60),
+                area(),
+                outline(5),
+                pos(0,5),
+                color(0,200,0)
+            ]
+        )
+        k.player_1_health.dataFlipX = true
+        k.player_1_health.flipX = k.player_1_health.dataFlipX 
+        k.player_2_health.dataFlipX = true
+        k.player_2_health.flipX = k.player_2_health.dataFlipX 
         onUpdate(
             ()=>{
                 console.info('update')
-                if(Math.abs(player_1.pos.x - player_2.pos.x) <= 600)
-                {
-                    camScale(1.12)
-                }
-                if(Math.abs(player_1.pos.x - player_2.pos.x) <= 400)
-                {
-                    camScale(1.25)
-                }
-                else
-                {
-                    camScale(1.08)
-                }
+                // if(Math.abs(player_1.pos.x - player_2.pos.x) <= 600)
+                
             }
         );
 
@@ -206,6 +236,13 @@ k.SCENES = {
                         }
                         k['player_'+player].Hurt()
                         k['player_'+player].health -= k['player_'+ennemy_player].strength
+                        console.info('player_'+player+'_health_bar')
+                        k['player_'+player+'_health'].width = 490 * ((k['player_'+player].health / 200) * 100/100)
+                        k['player_'+player+'_health'].flipX = k['player_'+player+'_health'].dataFlipX 
+                        if(k['player_'+player+'_health'].flipX)
+                        {
+                            k['player_'+player+'_health'].pos.x = k['player_'+player+'_health'].pos.x + Math.abs(k['player_'+player+'_health_bar_container'].width - k['player_'+player+'_health'].width)
+                        }
                         if(k['player_'+player].health<=0)
                         {
                             k['player_'+player].Die()
