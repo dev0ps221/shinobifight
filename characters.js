@@ -194,7 +194,7 @@ k.makeCharacter = (data,parent=null)=>{
                         character.attack = add(
                             [
                                 area({shape:new Rect(vec2(0),character.width,character.height)}),
-                                pos(character.pos.x + xPos,character.pos.y),
+                                pos(character.pos.x + xPos - (character.width/2),character.pos.y),
                                 body(),
                                 lifespan(1, {
                                     fade: 0.5 // it start fading 0.5 second after time
@@ -223,7 +223,7 @@ k.makeCharacter = (data,parent=null)=>{
                         character.attack = add(
                             [
                                 area({shape:new Rect(vec2(0),character.width,character.height)}),
-                                pos(character.pos.x + xPos,character.pos.y),
+                                pos(character.pos.x + xPos - (character.width/2),character.pos.y),
                                 body(),
                                 lifespan(1, {
                                     fade: 0.5 // it start fading 0.5 second after time
@@ -252,7 +252,7 @@ k.makeCharacter = (data,parent=null)=>{
                         character.attack = add(
                             [
                                 area({shape:new Rect(vec2(0),character.width,character.height)}),
-                                pos(character.pos.x + xPos,character.pos.y),
+                                pos(character.pos.x + xPos - (character.width/2),character.pos.y),
                                 body(),
                                 lifespan(1, {
                                     fade: 0.5 // it start fading 0.5 second after time
