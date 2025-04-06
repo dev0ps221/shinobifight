@@ -4,6 +4,7 @@ kaplay(
         height:k.LAYOUT.height,
         scale:.7,
         letterbox:true,
+        buttons:k.BUTTONS
     }
 )
 k.init()

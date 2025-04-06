@@ -75,9 +75,10 @@ k.makeCharacter = (data)=>{
     return character
 }
 k.switchCursorSprite = (cursor,charactername) => {
-    spritename = k.CHARACTERS[charactername]
+    spritename = k.CHARACTER_SPRITES[charactername]
     if(spritename)
     {
-
+        cursor.use(sprite(spritename))
+        cursor.cursor_name.text = charactername
     }
 }
