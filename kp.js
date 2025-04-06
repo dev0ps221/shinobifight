@@ -134,14 +134,14 @@ k.defineConstants       = () => {
         SUBTITLE              : "A SHINOBI FIGHT GAME",
         SELECT_CHARACTER      : "CHOOSE YOUR FIGHTER",
     }
-    k.CHARACTERS            =   ['FIGHTER','SHINOBI']
+    k.CHARACTERS            =   ['RASSOUL','AMETOO']
     k.CHARACTER_SPRITES     =   {
-        'FIGHTER'           : 'Fighter',
-        'SHINOBI'           : 'Shinobi',
+        'RASSOUL'           : 'Fighter',
+        'AMETOO'            : 'Shinobi',
     }
     k.CHARACTER_MENU     =   {
-        'FIGHTER'           : 'Fighter_idle',
-        'SHINOBI'           : 'Shinobi_idle',
+        'RASSOUL'           : 'Fighter_idle',
+        'AMETOO'            : 'Shinobi_idle',
     }
     k.PLAYER_1_TEXT         =   'PLAYER 1'
     k.PLAYER_2_TEXT         =   'PLAYER 2'
