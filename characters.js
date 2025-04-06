@@ -43,7 +43,7 @@ k.makeCharacter = (data,parent=null)=>{
     character.isRunning = false
     character.is_attacking = true
     character.speed=data.speed ?? 460
-    character.jumpForce=data.jumpForce ?? 20
+    character.jumpForce=data.jumpForce ??  45
     character.dataflipX=data.flipX
     character.flipX=data.flipX
     character.playername = data.playername
@@ -186,23 +186,23 @@ k.makeCharacter = (data,parent=null)=>{
     character.attack_1 = () => {
         if(!character.is_dead)
         {
-            character.flipX = character.dataFlipX
             if(!character.is_attacking){
                 character.use(sprite(character.sprites.attack_1))
                 character.play('attack_1')
+                character.flipX = character.dataFlipX
                 play(character.sprites.attack_1.toLowerCase().match('shinobi')?'woo':'oh')
                 setTimeout(
                     ()=>{
                         const xMargin   = (character.flipX ? -1 : 1) * (character.width / 2)
-                        const xPos      = ((character.flipX ? -1 : 0) * (character.width)) + xMargin
+                        const xPos      = ((character.flipX ? -1 : 0) * (character.width)) + xMargin  + ((character.flipX ? (character.width) : 0))
+                        if(character.attack)
+                        {
+                            character.attack.destroy()
+                        }
                         character.attack = add(
                             [
                                 area({shape:new Rect(vec2(0),character.width,character.height)}),
                                 pos(character.pos.x + xPos - (character.width/2),character.pos.y),
-                                body(),
-                                lifespan(1, {
-                                    fade: 0.25 // it start fading 0.5 second after time
-                                }),
                                 character.playername+'attack_1'
                             ]
                         )
@@ -215,23 +215,23 @@ k.makeCharacter = (data,parent=null)=>{
     character.attack_2 = () => {
         if(!character.is_dead)
         {
-            character.flipX = character.dataFlipX
             if(!character.is_attacking){
                 character.use(sprite(character.sprites.attack_2))
                 character.play('attack_2')
-                play(character.sprites.attack_1.toLowerCase().match('shinobi')?'woo':'oh')
+                character.flipX = character.dataFlipX
+                play(character.sprites.attack_2.toLowerCase().match('shinobi')?'woo':'oh')
                 setTimeout(
                     ()=>{
                         const xMargin   = (character.flipX ? -1 : 1) * (character.width / 2)
-                        const xPos      = (character.flipX ? -1 : 0) * (character.width) + xMargin
+                        const xPos      = ((character.flipX ? -1 : 0) * (character.width)) + xMargin  + ((character.flipX ? (character.width) : 0)) + ((character.flipX ? -1 : 0))
+                        if(character.attack)
+                        {
+                            character.attack.destroy()
+                        }
                         character.attack = add(
                             [
                                 area({shape:new Rect(vec2(0),character.width,character.height)}),
                                 pos(character.pos.x + xPos - (character.width/2),character.pos.y),
-                                body(),
-                                lifespan(1, {
-                                    fade: 0.25 // it start fading 0.5 second after time
-                                }),
                                 character.playername+'attack_2'
                             ]
                         )
@@ -244,23 +244,23 @@ k.makeCharacter = (data,parent=null)=>{
     character.attack_3 = () => {
         if(!character.is_dead)
         {
-            character.flipX = character.dataFlipX
             if(!character.is_attacking){
                 character.use(sprite(character.sprites.attack_3))
                 character.play('attack_3')
-                play(character.sprites.attack_1.toLowerCase().match('shinobi')?'woo':'oh')
+                character.flipX = character.dataFlipX
+                play(character.sprites.attack_3.toLowerCase().match('shinobi')?'woo':'oh')
                 setTimeout(
                     ()=>{
                         const xMargin   = (character.flipX ? -1 : 1) * (character.width / 2)
-                        const xPos      = (character.flipX ? -1 : 0) * (character.width) + xMargin
+                        const xPos      = ((character.flipX ? -1 : 0) * (character.width)) + xMargin  + ((character.flipX ? (character.width) : 0))
+                        if(character.attack)
+                        {
+                            character.attack.destroy()
+                        }
                         character.attack = add(
                             [
                                 area({shape:new Rect(vec2(0),character.width,character.height)}),
                                 pos(character.pos.x + xPos - (character.width/2),character.pos.y),
-                                body(),
-                                lifespan(1, {
-                                    fade: 0.25 // it start fading 0.5 second after time
-                                }),
                                 character.playername+'attack_3'
                             ]
                         )

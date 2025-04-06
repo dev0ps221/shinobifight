@@ -90,7 +90,7 @@ k.SCENES = {
         ])
         const ground = add(
             [
-                area({shape:new Rect(vec2(0),k.LAYOUT.width*4,k.LAYOUT.height - k.LAYOUT.height/3)}),
+                area({shape:new Rect(vec2(0),k.LAYOUT.width*4,k.LAYOUT.height - k.LAYOUT.height/3.8)}),
                 pos(-k.LAYOUT.width,k.LAYOUT.height - k.LAYOUT.height/3.8),
                 body({isStatic:true})
             ]
