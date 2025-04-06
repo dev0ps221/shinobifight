@@ -3,7 +3,7 @@ k.makePlayer = (data,parent) => {
     const spritename = k.CHARACTER_SPRITES[character]
     const player_data = {
         speed:data.speed ?? 460,
-        jumpForce:data.jumpForce ?? 20,
+        jumpForce:data.jumpForce ?? 600,
         x:data.x,
         y:data.y,
         flipX:data.flipX

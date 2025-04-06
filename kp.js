@@ -169,10 +169,10 @@ k.defineConstants       = () => {
             keyboard : ["down"]
         },
         PLAYER_1_JUMP : {
-            keyboard : ["f"]
+            keyboard : ["f","w"]
         },
         PLAYER_2_JUMP : {
-            keyboard : ["shift"]
+            keyboard : ["shift","up"]
         },
     }
 
@@ -214,7 +214,7 @@ k.moveCursor = (cursor,idx) => {
         idx = 0
     }
     cursor.idx = idx
-    k.switchCursorSprite(cursor,k.CHARACTERS[idx])
+    k.switchCursorSprite(cursor,k.CHARACTER_SPRITES[idx])
     cursor.flipX = cursor.dataFlipX
     cursor.play('idle')
 }
