@@ -39,20 +39,20 @@ k.loadCharacterSprites  = ()=> {
         sliceY:1,
         anims:{'shield':{from:0,to:1,loop:true}}
     })
-    loadSprite('Fighter_attack1','Fighter/Attack_1.png',{
+    loadSprite('Fighter_attack_1','Fighter/Attack_1.png',{
         sliceX:4,
         sliceY:1,
         anims:{'attack_1':{from:0,to:3}}
     })
-    loadSprite('Fighter_attack2','Fighter/Attack_2.png',{
+    loadSprite('Fighter_attack_2','Fighter/Attack_2.png',{
         sliceX:3,
         sliceY:1,
-        anims:{'idle':{from:0,to:2,loop:true}}
+        anims:{'attack_2':{from:0,to:2}}
     })
-    loadSprite('Fighter_attack3','Fighter/Attack_3.png',{
+    loadSprite('Fighter_attack_3','Fighter/Attack_3.png',{
         sliceX:4,
         sliceY:1,
-        anims:{'idle':{from:0,to:3,loop:true}}
+        anims:{'attack_3':{from:0,to:3}}
     })
 
     loadSprite('Shinobi_idle','Shinobi/Idle.png',{
@@ -90,20 +90,20 @@ k.loadCharacterSprites  = ()=> {
         sliceY:1,
         anims:{'shield':{from:0,to:3,loop:true}}
     })
-    loadSprite('Shinobi_attack1','Shinobi/Attack_1.png',{
+    loadSprite('Shinobi_attack_1','Shinobi/Attack_1.png',{
         sliceX:5,
         sliceY:1,
         anims:{'attack_1':{from:0,to:4}}
     })
-    loadSprite('Shinobi_attack2','Shinobi/Attack_2.png',{
+    loadSprite('Shinobi_attack_2','Shinobi/Attack_2.png',{
         sliceX:3,
         sliceY:1,
-        anims:{'idle':{from:0,to:2,loop:true}}
+        anims:{'attack_2':{from:0,to:2}}
     })
-    loadSprite('Shinobi_attack3','Shinobi/Attack_3.png',{
+    loadSprite('Shinobi_attack_3','Shinobi/Attack_3.png',{
         sliceX:4,
         sliceY:1,
-        anims:{'idle':{from:0,to:3,loop:true}}
+        anims:{'attack_3':{from:0,to:3}}
     })
 }
 k.loadAssets            = () => {
@@ -156,6 +156,15 @@ k.defineConstants       = () => {
         PLAYER_1_DOWN : {
             keyboard : ["s"]
         },
+        PLAYER_1_ATTACK_1:{
+            keyboard : ["f"]
+        },
+        PLAYER_1_ATTACK_2:{
+            keyboard : ["g"]
+        },
+        PLAYER_1_ATTACK_3:{
+            keyboard : ["h"]
+        },
         PLAYER_2_LEFT : {
             keyboard : ["left"]
         },
@@ -169,10 +178,19 @@ k.defineConstants       = () => {
             keyboard : ["down"]
         },
         PLAYER_1_JUMP : {
-            keyboard : ["f","w"]
+            keyboard : ["w"]
         },
         PLAYER_2_JUMP : {
-            keyboard : ["shift","up"]
+            keyboard : ["up"]
+        },
+        PLAYER_2_ATTACK_1:{
+            keyboard : ["shift"]
+        },
+        PLAYER_2_ATTACK_2:{
+            keyboard : ["/"]
+        },
+        PLAYER_2_ATTACK_3:{
+            keyboard : ["."]
         },
     }
 
@@ -214,7 +232,7 @@ k.moveCursor = (cursor,idx) => {
         idx = 0
     }
     cursor.idx = idx
-    k.switchCursorSprite(cursor,k.CHARACTER_SPRITES[idx])
+    k.switchCursorSprite(cursor,k.CHARACTERS[idx])
     cursor.flipX = cursor.dataFlipX
     cursor.play('idle')
 }

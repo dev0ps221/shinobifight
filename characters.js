@@ -39,15 +39,19 @@ k.makeCharacter = (data,parent=null)=>{
     character.isJumping = false
     character.isMoving = false
     character.isRunning = false
+    character.is_attacking = true
     character.speed=data.speed ?? 460
     character.jumpForce=data.jumpForce ?? 20
     character.dataflipX=data.flipX
+    character.playername = data.playername
     
     
     
     character.Idle = ()=>{
         character.isRunning = false
         character.isMoving = false
+        character.isJumping = false
+        character.is_attacking = false
         character.use(sprite(character.sprites.idle))
         character.play("idle")
         character.flipX = character.dataFlipX
@@ -63,10 +67,12 @@ k.makeCharacter = (data,parent=null)=>{
         character.play("walk")
     }
     character.Jump = ()=>{
-        character.use(sprite(character.sprites.jump))
-        character.play("jump")
-        character.isJumping = true
-        character.jump(character.jumpForce)
+        if(!character.isJumping) {
+            character.use(sprite(character.sprites.jump))
+            character.play("jump")
+            character.isJumping = true
+            character.jump(character.jumpForce)
+        }
     }
     character.Hurt = ()=>{
         character.use(sprite(character.sprites.hurt))
@@ -77,7 +83,7 @@ k.makeCharacter = (data,parent=null)=>{
         character.play("shield")
     }
     character.getBackToIdle = ()=>{
-        if(this.isGrounded){
+        if(character.isGrounded){
             character.isJumping = false
         }
         character.Idle
@@ -122,14 +128,70 @@ k.makeCharacter = (data,parent=null)=>{
         character.dataFlipX = false
         character.move(character.speed*1,0)
     }
+    character.attack_1 = () => {
+        character.flipX = character.dataFlipX
+        if(!character.is_attacking){
+            const hitbox = add(
+                [
+                    area({shape:new Rect(vec2(0),50,character.height)}),
+                    pos(character.pos.x + (character.flipX ? (- character.width) : (-character.width)),character.pos.y),
+                    body({isStatic:true}),
+                    character.playername+'attack_1'
+                ]
+            )
+            character.use(sprite(character.sprites.attack_1))
+            character.play('attack_1')
+            character.is_attacking = true
+        }
+    }
+    character.attack_2 = () => {
+        character.flipX = character.dataFlipX
+        if(!character.is_attacking){
+            const hitbox = add(
+                [
+                    area({shape:new Rect(vec2(0),50,character.height)}),
+                    pos(character.pos.x + (character.flipX ? (- character.width) : (-character.width)),character.pos.y),
+                    body({isStatic:true}),
+                    character.playername+'attack_2'
+                ]
+            )
+            character.use(sprite(character.sprites.attack_2))
+            character.play('attack_2')
+            character.is_attacking = true
+        }
+    }
+    character.attack_3 = () => {
+        character.flipX = character.dataFlipX
+        if(!character.is_attacking){
+            const hitbox = add(
+                [
+                    area({shape:new Rect(vec2(0),50,character.height)}),
+                    pos(character.pos.x + (character.flipX ? (- character.width) : (-character.width)),character.pos.y),
+                    body({isStatic:true}),
+                    character.playername+'attack_3'
+                ]
+            )
+            character.use(sprite(character.sprites.attack_3))
+            character.play('attack_3')
+            character.is_attacking = true
+        }
+    }
     character.Moveup = () => {
         character.Jump()
     }
+    character.onUpdate(
+        ()=>{
+            if(character.isGrounded() && (character.isJumping))
+            {
+                character.Idle() 
+            }
+        }
+    )
     character.Idle()
     return character
 }
 k.switchCursorSprite = (cursor,charactername) => {
-    spritename = k.CHARACTER_SPRITES[charactername]
+    spritename = k.CHARACTER_MENU[charactername]
     if(spritename)
     {
         cursor.use(sprite(spritename))

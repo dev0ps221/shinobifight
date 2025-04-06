@@ -103,37 +103,70 @@ k.SCENES = {
         )
         const player_1 = k.makePlayer(k.player_1_data,background)
         const player_2 = k.makePlayer({...k.player_2_data},background)
-        player_2.flipX = player_2.dataFlipX
-        
-        background.onButtonDown(
-            "PLAYER_1_LEFT",()=>{
-                player_1.Moveleft()
-            }
-        )
-        ;
-        (
-            ()=>{
-                ['PLAYER_1_LEFT','PLAYER_1_RIGHT','PLAYER_1_JUMP'].forEach(
-                    button=>{
-                        background.onButtonRelease(
-                            button,()=>{
-                                player_1.Idle()
+        k.player_1 = player_1
+        k.player_2 = player_2
+        player_2.flipX = player_2.dataFlipX;
+
+        ['1','2'].forEach(
+            player=>{
+
+                (
+                    ()=>{
+                        [`PLAYER_${player}_LEFT`,`PLAYER_${player}_RIGHT`].forEach(
+                            button=>{
+                                background.onButtonRelease(
+                                    button,()=>{
+                                        k['player_'+player].Idle()
+                                    }
+                                )
                             }
                         )
                     }
+                )()
+        
+                background.onButtonDown(
+                    `PLAYER_${player}_LEFT`,()=>{
+                        k['player_'+player].Moveleft()
+                    }
+                )
+                background.onButtonDown(
+                    `PLAYER_${player}_RIGHT`,()=>{
+                        k['player_'+player].Moveright()
+                    }
+                )
+                background.onButtonDown(
+                    `PLAYER_${player}_JUMP`,()=>{
+                        k['player_'+player].Jump()
+                    }
+                )
+                background.onButtonDown(
+                    `PLAYER_${player}_ATTACK_1`,()=>{
+                        k['player_'+player].attack_1()
+                    }
+                )
+                background.onButtonDown(
+                    `PLAYER_${player}_ATTACK_2`,()=>{
+                        k['player_'+player].attack_2()
+                    }
+                )
+                background.onButtonDown(
+                    `PLAYER_${player}_ATTACK_3`,()=>{
+                        k['player_'+player].attack_3()
+                    }
+                )
+                k['player_'+player].onAnimEnd(
+                    (anim)=>{
+                        console.info('animend',anim)
+                        if(anim.match('attack'))
+                        {
+                            k['player_'+player].Idle()
+                        }
+                    }
                 )
             }
-        )()
-        background.onButtonDown(
-            "PLAYER_1_RIGHT",()=>{
-                player_1.Moveright()
-            }
-        )
-        background.onButtonDown(
-            "PLAYER_1_JUMP",()=>{
-                player_1.Jump()
-            }
-        )
+        );
+
+
     },
     "choose_character" : () => {
         
@@ -219,8 +252,8 @@ k.SCENES = {
 
         const readyToFight = () => 
         {
-            k.player_1_cursor.use(sprite(k.CHARACTER_MENU[k.player_1_cursor.name].replace('_idle','_attack1')))
-            k.player_2_cursor.use(sprite(k.CHARACTER_MENU[k.player_2_cursor.name].replace('_idle','_attack1')))
+            k.player_1_cursor.use(sprite(k.CHARACTER_MENU[k.player_1_cursor.name].replace('_idle','_attack_1')))
+            k.player_2_cursor.use(sprite(k.CHARACTER_MENU[k.player_2_cursor.name].replace('_idle','_attack_1')))
             k.player_1_cursor.flipX = k.player_1_cursor.dataFlipX
             k.player_2_cursor.flipX = k.player_2_cursor.dataFlipX
             k.player_1_cursor.play('attack_1')
@@ -268,7 +301,7 @@ k.SCENES = {
                 k.moveCursorRight(k.player_2_cursor)
             }
         })
-        background.onButtonPress("PLAYER_1_JUMP",()=>{
+        background.onButtonPress("PLAYER_1_ATTACK_1",()=>{
             k.player_1_cursor.selected = true
             k.player_1_cursor.cursor_name.use(
                 color(255, 0, 0)
@@ -279,7 +312,7 @@ k.SCENES = {
             }
             // player_1_cursor.play('attack_1')
         })
-        background.onButtonPress("PLAYER_2_JUMP",()=>{
+        background.onButtonPress("PLAYER_2_ATTACK_1",()=>{
             k.player_2_cursor.selected = true
             k.player_2_cursor.cursor_name.use(
                 color(255, 0, 0)
