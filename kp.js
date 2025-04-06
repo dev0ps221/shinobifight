@@ -57,6 +57,57 @@ k.loadCharacterSprites  = ()=> {
         anims:{'attack_3':{from:0,to:3,loop:false}}
     })
 
+    loadSprite('Samurai_idle','Samurai/Idle.png',{
+        sliceX:6,
+        sliceY:1,
+        anims:{'idle':{from:0,to:5,loop:true}}
+    })
+    loadSprite('Samurai_run','Samurai/Run.png',{
+        sliceX:8,
+        sliceY:1,
+        anims:{'run':{from:0,to:7,loop:false}}
+    })
+    loadSprite('Samurai_walk','Samurai/Walk.png',{
+        sliceX:8,
+        sliceY:1,
+        anims:{'walk':{from:0,to:7,loop:true}}
+    })
+    loadSprite('Samurai_dead','Samurai/Dead.png',{
+        sliceX:3,
+        sliceY:1,
+        anims:{'dead':{from:0,to:2,loop:false}}
+    })
+    loadSprite('Samurai_hurt','Samurai/Hurt.png',{
+        sliceX:2,
+        sliceY:1,
+        anims:{'hurt':{from:0,to:1,loop:false}}
+    })
+    loadSprite('Samurai_jump','Samurai/Jump.png',{
+        sliceX:10,
+        sliceY:1,
+        anims:{'jump':{from:0,to:9,loop:true}}
+    })
+    loadSprite('Samurai_shield','Samurai/Shield.png',{
+        sliceX:2,
+        sliceY:1,
+        anims:{'shield':{from:0,to:1,loop:true}}
+    })
+    loadSprite('Samurai_attack_1','Samurai/Attack_1.png',{
+        sliceX:6,
+        sliceY:1,
+        anims:{'attack_1':{from:0,to:5,loop:false}}
+    })
+    loadSprite('Samurai_attack_2','Samurai/Attack_2.png',{
+        sliceX:4,
+        sliceY:1,
+        anims:{'attack_2':{from:0,to:3,loop:false}}
+    })
+    loadSprite('Samurai_attack_3','Samurai/Attack_3.png',{
+        sliceX:3,
+        sliceY:1,
+        anims:{'attack_3':{from:0,to:2,loop:false}}
+    })
+
     loadSprite('Shinobi_idle','Shinobi/Idle.png',{
         sliceX:6,
         sliceY:1,
@@ -134,14 +185,16 @@ k.defineConstants       = () => {
         SUBTITLE              : "A SHINOBI FIGHT GAME",
         SELECT_CHARACTER      : "CHOOSE YOUR FIGHTER",
     }
-    k.CHARACTERS            =   ['RASSOUL','AMETOO']
+    k.CHARACTERS            =   ['RASSOUL','AMETOO','SEYBA']
     k.CHARACTER_SPRITES     =   {
         'RASSOUL'           : 'Fighter',
         'AMETOO'            : 'Shinobi',
+        'SEYBA'             : 'Samurai',
     }
     k.CHARACTER_MENU     =   {
         'RASSOUL'           : 'Fighter_idle',
         'AMETOO'            : 'Shinobi_idle',
+        'SEYBA'             : 'Samurai_idle',
     }
     k.PLAYER_1_TEXT         =   'PLAYER 1'
     k.PLAYER_2_TEXT         =   'PLAYER 2'
