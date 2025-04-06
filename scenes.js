@@ -197,6 +197,11 @@ k.SCENES = {
                     }
                 )
                 background.onButtonDown(
+                    `PLAYER_${player}_RUN`,()=>{
+                        k['player_'+player].Run()
+                    }
+                )
+                background.onButtonDown(
                     `PLAYER_${player}_ATTACK_1`,()=>{
                         k['player_'+player].attack_1()
                     }
@@ -248,6 +253,11 @@ k.SCENES = {
                             k['player_'+player].Die()
                             play('ko')
                             k.winner = k['player_'+ennemy_player]
+                            setTimeout(
+                                ()=>{
+                                    go('choose_character')
+                                },300
+                            )
                         }
                     }
                 }

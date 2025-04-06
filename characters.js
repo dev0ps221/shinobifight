@@ -72,9 +72,10 @@ k.makeCharacter = (data,parent=null)=>{
     character.Run = ()=>{
         if(!character.is_dead)
         {
-            if(!character.is_jumping){
+            if(!character.is_jumping && !character.isRunning){
                 character.use(sprite(character.sprites.run))
                 character.play("run")
+                character.isRunning = true
             }
         }
     }
@@ -152,7 +153,7 @@ k.makeCharacter = (data,parent=null)=>{
             }
             character.flipX = true
             character.dataFlipX = true
-            character.move(character.speed*-1,0)
+            character.move(character.speed * (character.isRunning ? 5 : 1) *-1,0)
         }
     }
     character.Moveright = () => {
@@ -175,7 +176,7 @@ k.makeCharacter = (data,parent=null)=>{
             }
             character.flipX = false
             character.dataFlipX = false
-            character.move(character.speed*1,0)
+            character.move(character.speed * (character.isRunning ? 5 : 1) *1,0)
         }
     }
     character.attack_1 = () => {

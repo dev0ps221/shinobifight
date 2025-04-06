@@ -14,7 +14,7 @@ k.loadCharacterSprites  = ()=> {
     loadSprite('Fighter_run','Fighter/Run.png',{
         sliceX:8,
         sliceY:1,
-        anims:{'run':{from:0,to:7,loop:true}}
+        anims:{'run':{from:0,to:7,loop:false}}
     })
     loadSprite('Fighter_walk','Fighter/Walk.png',{
         sliceX:8,
@@ -65,7 +65,7 @@ k.loadCharacterSprites  = ()=> {
     loadSprite('Shinobi_run','Shinobi/Run.png',{
         sliceX:8,
         sliceY:1,
-        anims:{'run':{from:0,to:7,loop:true}}
+        anims:{'run':{from:0,to:7,loop:false}}
     })
     loadSprite('Shinobi_walk','Shinobi/Walk.png',{
         sliceX:8,
@@ -163,6 +163,9 @@ k.defineConstants       = () => {
         },   
         PLAYER_1_DOWN : {
             keyboard : ["s"]
+        },   
+        PLAYER_1_RUN : {
+            keyboard : ["shift"]
         },
         PLAYER_1_ATTACK_1:{
             keyboard : ["f"]
@@ -184,6 +187,9 @@ k.defineConstants       = () => {
         },   
         PLAYER_2_DOWN : {
             keyboard : ["down"]
+        },
+        PLAYER_2_RUN : {
+            keyboard : ["alt"]
         },
         PLAYER_1_JUMP : {
             keyboard : ["w"]
