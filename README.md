@@ -13,3 +13,4 @@ Choose your champion, master their moves—from slick combos to devastating fini
 🌌 Hand-crafted pixel art style
 
 Developed with love by DEV0PS221 (El Hadji Seybatou Mbengue)
+playable at : [text](https://dev0ps221.github.io/shinobifight/)
