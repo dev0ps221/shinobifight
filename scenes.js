@@ -35,8 +35,8 @@ k.SCENES = {
         k.player_1_cursor = add(
             [
                 sprite(k.CHARACTER_SPRITES[k.CHARACTERS[0]]),
-                pos(k.LAYOUT.width/4, k.LAYOUT.height/2),
-                scale(4),
+                k.PLAYER_1_DEFAULT_POS,
+                scale(3),
                 anchor("center"),
                 {
                     name : k.CHARACTERS[0],
@@ -56,8 +56,8 @@ k.SCENES = {
         k.player_2_cursor = add(
             [
                 sprite(k.CHARACTER_SPRITES[k.CHARACTERS[1]]),
-                pos(k.LAYOUT.width - (k.LAYOUT.width/4) , k.LAYOUT.height/2),   
-                scale(4),
+                k.PLAYER_2_DEFAULT_POS,   
+                scale(3),
                 anchor("center"),
                 {
                     name : k.CHARACTERS[1],

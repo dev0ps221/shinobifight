@@ -133,6 +133,8 @@ k.defineConstants       = () => {
     }
     k.PLAYER_1_TEXT         =   'PLAYER 1'
     k.PLAYER_2_TEXT         =   'PLAYER 2'
+    k.PLAYER_1_DEFAULT_POS  =   pos(k.LAYOUT.width/4, k.LAYOUT.height/2)
+    k.PLAYER_2_DEFAULT_POS  =   pos(k.LAYOUT.width - (k.LAYOUT.width/4) , k.LAYOUT.height/2)
     k.BUTTONS               =   {
         PLAYER_1_LEFT : {
             keyboard : ["a"]
