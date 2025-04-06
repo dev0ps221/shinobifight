@@ -80,6 +80,60 @@ k.SCENES = {
             sprite("warzone"),
             pos(0,0),
         ])
+        const ground = add(
+            [
+                area({shape:new Rect(vec2(0),k.LAYOUT.width*4,k.LAYOUT.height - k.LAYOUT.height/3)}),
+                pos(-k.LAYOUT.width,k.LAYOUT.height - k.LAYOUT.height/3),
+                body({isStatic:true})
+            ]
+        )
+        const leftwall = add(
+            [
+                area({shape:new Rect(vec2(0),20,k.LAYOUT.height)}),
+                pos(0,0),
+                body({isStatic:true})
+            ]
+        )
+        const rightwall = add(
+            [
+                area({shape:new Rect(vec2(0),20,k.LAYOUT.height)}),
+                pos(k.LAYOUT.width - 20,0),
+                body({isStatic:true})
+            ]
+        )
+        const player_1 = k.makePlayer(k.player_1_data,background)
+        const player_2 = k.makePlayer({...k.player_2_data},background)
+        player_2.flipX = player_2.dataFlipX
+        
+        background.onButtonDown(
+            "PLAYER_1_LEFT",()=>{
+                player_1.Moveleft()
+            }
+        )
+        ;
+        (
+            ()=>{
+                ['PLAYER_1_LEFT','PLAYER_1_RIGHT','PLAYER_1_JUMP'].forEach(
+                    button=>{
+                        background.onButtonRelease(
+                            button,()=>{
+                                player_1.Idle()
+                            }
+                        )
+                    }
+                )
+            }
+        )()
+        background.onButtonDown(
+            "PLAYER_1_RIGHT",()=>{
+                player_1.Moveright()
+            }
+        )
+        background.onButtonDown(
+            "PLAYER_1_JUMP",()=>{
+                player_1.Jump()
+            }
+        )
     },
     "choose_character" : () => {
         
@@ -119,7 +173,7 @@ k.SCENES = {
         
         k.player_1_cursor = add(
             [
-                sprite(k.CHARACTER_SPRITES[k.CHARACTERS[0]]),
+                sprite(k.CHARACTER_MENU[k.CHARACTERS[0]]),
                 k.PLAYER_1_DEFAULT_POS,
                 scale(3),
                 anchor("center"),
@@ -140,7 +194,7 @@ k.SCENES = {
         k.player_1_cursor.play("idle")
         k.player_2_cursor = add(
             [
-                sprite(k.CHARACTER_SPRITES[k.CHARACTERS[1]]),
+                sprite(k.CHARACTER_MENU[k.CHARACTERS[1]]),
                 k.PLAYER_2_DEFAULT_POS,   
                 scale(3),
                 anchor("center"),
@@ -165,16 +219,28 @@ k.SCENES = {
 
         const readyToFight = () => 
         {
-            k.player_1_cursor.use(sprite(k.CHARACTER_SPRITES[k.player_1_cursor.name].replace('_idle','_attack1')))
-            k.player_2_cursor.use(sprite(k.CHARACTER_SPRITES[k.player_2_cursor.name].replace('_idle','_attack1')))
+            k.player_1_cursor.use(sprite(k.CHARACTER_MENU[k.player_1_cursor.name].replace('_idle','_attack1')))
+            k.player_2_cursor.use(sprite(k.CHARACTER_MENU[k.player_2_cursor.name].replace('_idle','_attack1')))
             k.player_1_cursor.flipX = k.player_1_cursor.dataFlipX
             k.player_2_cursor.flipX = k.player_2_cursor.dataFlipX
             k.player_1_cursor.play('attack_1')
             k.player_2_cursor.play('attack_1')
             setTimeout(
                 ()=>{
+                    k.player_1_data = {
+                        character:k.player_1_cursor.name.replace('_idle',''),
+                        playername:k.PLAYER_1_TEXT,
+                        x:k.PLAYER_1_DEFAULT_X,
+                        y:k.PLAYER_1_DEFAULT_Y,
+                    }
+                    k.player_2_data = {
+                        character:k.player_2_cursor.name.replace('_idle',''),
+                        playername:k.PLAYER_2_TEXT,
+                        x:k.PLAYER_2_DEFAULT_X,
+                        y:k.PLAYER_2_DEFAULT_Y,
+                    }
                     go("fight")
-                },2000
+                },800
             )
         }
 
