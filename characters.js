@@ -23,7 +23,8 @@ k.makeCharacter = (data,parent=null)=>{
         body({stickToPlatform: true,shape:new Rect(vec2(0),40,80,'center')}),
         anchor('center'),
         data.playername,
-        {health:400},
+        // {health:400},
+        {health:200},
     ])
     character.sprites = {
         "idle"              :   data.spritename_idle,
@@ -98,6 +99,7 @@ k.makeCharacter = (data,parent=null)=>{
     character.Hurt = ()=>{
         if(!character.is_dead)
         {
+            play('oh')
             character.use(sprite(character.sprites.hurt))
             character.play("hurt")
             character.flipX = character.dataFlipX
@@ -183,6 +185,7 @@ k.makeCharacter = (data,parent=null)=>{
             if(!character.is_attacking){
                 character.use(sprite(character.sprites.attack_1))
                 character.play('attack_1')
+                play(character.sprites.attack_1.toLowerCase().match('shinobi')?'woo':'ay')
                 setTimeout(
                     ()=>{
                         const xMargin   = (character.flipX ? -1 : 1) * (character.width / 2)
@@ -208,6 +211,7 @@ k.makeCharacter = (data,parent=null)=>{
             if(!character.is_attacking){
                 character.use(sprite(character.sprites.attack_2))
                 character.play('attack_2')
+                play(character.sprites.attack_1.toLowerCase().match('shinobi')?'woo':'ay')
                 setTimeout(
                     ()=>{
                         const xMargin   = (character.flipX ? -1 : 1) * (character.width / 2)
@@ -233,6 +237,7 @@ k.makeCharacter = (data,parent=null)=>{
             if(!character.is_attacking){
                 character.use(sprite(character.sprites.attack_3))
                 character.play('attack_3')
+                play(character.sprites.attack_1.toLowerCase().match('shinobi')?'woo':'ay')
                 setTimeout(
                     ()=>{
                         const xMargin   = (character.flipX ? -1 : 1) * (character.width / 2)

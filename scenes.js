@@ -15,7 +15,6 @@ k.SCENES = {
             anchor("center"),
             pos(k.LAYOUT.width/2, k.LAYOUT.height/6),
         ])
-
         options = [
             {
                 text : "PLAY",
@@ -28,7 +27,6 @@ k.SCENES = {
                 opt : null
             }
         ]
-
         options = options.map(
             option => {
                 option.opt =  background.add([
@@ -77,11 +75,11 @@ k.SCENES = {
     },
     "fight" : () => {
         setTimeout(()=>{
-            camScale(1.04)
+            camScale(1.02)
             setTimeout(()=>{
-                camScale(1.08)
+                camScale(1.04)
                 setTimeout(()=>{
-                    camScale(1.1)
+                    camScale(1.08)
                 },800)
             },400)
         },200)
@@ -93,7 +91,7 @@ k.SCENES = {
         const ground = add(
             [
                 area({shape:new Rect(vec2(0),k.LAYOUT.width*4,k.LAYOUT.height - k.LAYOUT.height/3)}),
-                pos(-k.LAYOUT.width,k.LAYOUT.height - k.LAYOUT.height/3),
+                pos(-k.LAYOUT.width,k.LAYOUT.height - k.LAYOUT.height/3.8),
                 body({isStatic:true})
             ]
         )
@@ -117,6 +115,24 @@ k.SCENES = {
         k.player_2 = player_2
         player_2.dataFlipX = true;
         player_2.flipX = true;
+        
+        onUpdate(
+            ()=>{
+                console.info('update')
+                if(Math.abs(player_1.pos.x - player_2.pos.x) <= 600)
+                {
+                    camScale(1.12)
+                }
+                if(Math.abs(player_1.pos.x - player_2.pos.x) <= 400)
+                {
+                    camScale(1.25)
+                }
+                else
+                {
+                    camScale(1.08)
+                }
+            }
+        );
 
         ['1','2'].forEach(
             player=>{
@@ -183,6 +199,7 @@ k.SCENES = {
                 const collide = ()=>{
                     if(!k.winner)
                     {
+                        play('whip')
                         if(k['player_'+ennemy_player].attack)
                         {
                             k['player_'+ennemy_player].attack.destroy()
@@ -192,6 +209,7 @@ k.SCENES = {
                         if(k['player_'+player].health<=0)
                         {
                             k['player_'+player].Die()
+                            play('ko')
                             k.winner = k['player_'+ennemy_player]
                         }
                     }

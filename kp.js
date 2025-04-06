@@ -109,6 +109,12 @@ k.loadCharacterSprites  = ()=> {
     })
 }
 k.loadAssets            = () => {
+    loadSound('ko','ko.mp3')
+    loadSound('who','who.mp3')
+    loadSound('oh','oh.mp3')
+    loadSound('ay','ay.mp3')
+    loadSound('whip','whip.mp3')
+    loadSound('woo','woo.mp3')
     loadSprite('warzone','war_zone.jpg')
     k.loadCharacterSprites()
 }
