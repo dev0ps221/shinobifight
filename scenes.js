@@ -152,7 +152,7 @@ k.SCENES = {
                 color(0,200,0)
             ]
         )
-        k.player_1_health.dataFlipX = true
+        k.player_1_health.dataFlipX = false
         k.player_1_health.flipX = k.player_1_health.dataFlipX 
         k.player_2_health.dataFlipX = true
         k.player_2_health.flipX = k.player_2_health.dataFlipX 
@@ -237,11 +237,11 @@ k.SCENES = {
                         k['player_'+player].Hurt()
                         k['player_'+player].health -= k['player_'+ennemy_player].strength
                         console.info('player_'+player+'_health_bar')
-                        k['player_'+player+'_health'].width = 490 * ((k['player_'+player].health / 200) * 100/100)
+                        k['player_'+player+'_health'].width = 500 * ((k['player_'+player].health / 200) * 100/100)
                         k['player_'+player+'_health'].flipX = k['player_'+player+'_health'].dataFlipX 
                         if(k['player_'+player+'_health'].flipX)
                         {
-                            k['player_'+player+'_health'].pos.x = k['player_'+player+'_health'].pos.x + Math.abs(k['player_'+player+'_health_bar_container'].width - k['player_'+player+'_health'].width)
+                            k['player_'+player+'_health'].pos.x = 500 - (500 * ((k['player_'+player].health / 200) * 100/100))
                         }
                         if(k['player_'+player].health<=0)
                         {
