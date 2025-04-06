@@ -76,6 +76,15 @@ k.SCENES = {
         
     },
     "fight" : () => {
+        setTimeout(()=>{
+            camScale(1.04)
+            setTimeout(()=>{
+                camScale(1.08)
+                setTimeout(()=>{
+                    camScale(1.1)
+                },800)
+            },400)
+        },200)
         k.winner = null
         const background = add([
             sprite("warzone"),
@@ -90,15 +99,15 @@ k.SCENES = {
         )
         const leftwall = add(
             [
-                area({shape:new Rect(vec2(0),20,k.LAYOUT.height)}),
+                area({shape:new Rect(vec2(0),100,k.LAYOUT.height)}),
                 pos(0,0),
                 body({isStatic:true})
             ]
         )
         const rightwall = add(
             [
-                area({shape:new Rect(vec2(0),20,k.LAYOUT.height)}),
-                pos(k.LAYOUT.width - 20,0),
+                area({shape:new Rect(vec2(0),100,k.LAYOUT.height)}),
+                pos(k.LAYOUT.width - 100,0),
                 body({isStatic:true})
             ]
         )
