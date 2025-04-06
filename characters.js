@@ -154,6 +154,8 @@ k.makeCharacter = (data,parent=null)=>{
             character.flipX = true
             character.dataFlipX = true
             character.move(character.speed * (character.isRunning ? 5 : 1) *-1,0)
+            character.flipX = true
+            character.dataFlipX = true
         }
     }
     character.Moveright = () => {
@@ -177,6 +179,8 @@ k.makeCharacter = (data,parent=null)=>{
             character.flipX = false
             character.dataFlipX = false
             character.move(character.speed * (character.isRunning ? 5 : 1) *1,0)
+            character.flipX = false
+            character.dataFlipX = false
         }
     }
     character.attack_1 = () => {
