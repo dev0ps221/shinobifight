@@ -99,7 +99,7 @@ k.makeCharacter = (data,parent=null)=>{
     character.Hurt = ()=>{
         if(!character.is_dead)
         {
-            play('oh')
+            play('ay')
             character.use(sprite(character.sprites.hurt))
             character.play("hurt")
             character.flipX = character.dataFlipX
@@ -185,7 +185,7 @@ k.makeCharacter = (data,parent=null)=>{
             if(!character.is_attacking){
                 character.use(sprite(character.sprites.attack_1))
                 character.play('attack_1')
-                play(character.sprites.attack_1.toLowerCase().match('shinobi')?'woo':'ay')
+                play(character.sprites.attack_1.toLowerCase().match('shinobi')?'woo':'oh')
                 setTimeout(
                     ()=>{
                         const xMargin   = (character.flipX ? -1 : 1) * (character.width / 2)
@@ -211,7 +211,7 @@ k.makeCharacter = (data,parent=null)=>{
             if(!character.is_attacking){
                 character.use(sprite(character.sprites.attack_2))
                 character.play('attack_2')
-                play(character.sprites.attack_1.toLowerCase().match('shinobi')?'woo':'ay')
+                play(character.sprites.attack_1.toLowerCase().match('shinobi')?'woo':'oh')
                 setTimeout(
                     ()=>{
                         const xMargin   = (character.flipX ? -1 : 1) * (character.width / 2)
@@ -237,7 +237,7 @@ k.makeCharacter = (data,parent=null)=>{
             if(!character.is_attacking){
                 character.use(sprite(character.sprites.attack_3))
                 character.play('attack_3')
-                play(character.sprites.attack_1.toLowerCase().match('shinobi')?'woo':'ay')
+                play(character.sprites.attack_1.toLowerCase().match('shinobi')?'woo':'oh')
                 setTimeout(
                     ()=>{
                         const xMargin   = (character.flipX ? -1 : 1) * (character.width / 2)
