@@ -1,7 +1,9 @@
 kaplay()
 
-const k = {}
-k.loadCharacterSprites = ()=> {
+const k = {
+    options:{},
+}
+k.loadCharacterSprites  = ()=> {
     loadSprite('Fighter_idle','Fighter/Idle.png',{
         sliceX:6,
         sliceY:1,
@@ -104,16 +106,47 @@ k.loadCharacterSprites = ()=> {
         anims:{'iddle':{from:0,to:3}}
     })
 }
-k.loadAssets = () => {
+k.loadAssets            = () => {
     loadSprite('warzone','war_zone.jpg')
     k.loadCharacterSprites()
 }
 
-k.defineConstants = () => {
+k.defineConstants       = () => {
+    k.LAYOUT            =   {
+        width:2000,
+        height:1109,
+    }
     k.GAME_INFOS        =   {
         'GAME_NAME'         : "SHINOBI FIGHT GAME",
         'GAME_AUTHOR'       : "DEV0PS221 (EL HADJI SEYBATOU MBENGUE)",
         'GAME_GITHUB'       : "https://github.com/dev0ps221/shinobifight",
     }
+    k.GAME_TEXTS        =   {
+        'TITLE'                 : "SHINOBI FIGHT GAME",
+        'SUBTITLE'              : "A SHINOBI FIGHT GAME",
+        'SELECT_CHARACTER'      : "CHOOSE YOUR FIGHTER",
+    }
 
 } 
+k.optionIsSet           = (name) => {
+    return name in k.options
+}
+k.setOption             = (name,value) => {
+    k.options[name] = value
+}
+k.getOption             = (name) => {
+    return k.optionIsSet(name) ? k.options[name] : null
+}
+k.defineOptions         = (options=[]) => {
+    if(Array.isArray(options)){
+        options.forEach(opt => {
+            k.setOption(opt.name,opt.value)
+        })
+    }
+}
+k.defineConstants()
+k.init                  = () => {
+    k.defineOptions()
+    k.loadAssets()
+    k.initScenes()
+}

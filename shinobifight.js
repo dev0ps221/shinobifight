@@ -1,9 +1,10 @@
 kaplay(
     {
-        width:2000,
-        height:1109,
+        width:k.LAYOUT.width,
+        height:k.LAYOUT.height,
         scale:.7,
         letterbox:true,
     }
 )
-k.loadAssets()
+k.init()
+go("main")
