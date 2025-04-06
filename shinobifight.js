@@ -6,3 +6,4 @@ kaplay(
         letterbox:true,
     }
 )
+k.loadAssets()
