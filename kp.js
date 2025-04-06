@@ -42,7 +42,7 @@ k.loadCharacterSprites  = ()=> {
     loadSprite('Fighter_attack1','Fighter/Attack_1.png',{
         sliceX:4,
         sliceY:1,
-        anims:{'idle':{from:0,to:3,loop:true}}
+        anims:{'attack_1':{from:0,to:3}}
     })
     loadSprite('Fighter_attack2','Fighter/Attack_2.png',{
         sliceX:3,
@@ -93,7 +93,7 @@ k.loadCharacterSprites  = ()=> {
     loadSprite('Shinobi_attack1','Shinobi/Attack_1.png',{
         sliceX:5,
         sliceY:1,
-        anims:{'idle':{from:0,to:4,loop:true}}
+        anims:{'attack_1':{from:0,to:4}}
     })
     loadSprite('Shinobi_attack2','Shinobi/Attack_2.png',{
         sliceX:3,

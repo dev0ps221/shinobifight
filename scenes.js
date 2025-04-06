@@ -15,6 +15,91 @@ k.SCENES = {
             anchor("center"),
             pos(k.LAYOUT.width/2, k.LAYOUT.height/6),
         ])
+
+        options = [
+            {
+                text : "PLAY",
+                action : "choose_character",
+                opt : null
+            },
+            {
+                text : "OPTIONS",
+                action : "options",
+                opt : null
+            }
+        ]
+
+        options = options.map(
+            option => {
+                option.opt =  background.add([
+                    text(option.text, { size: 80 }),
+                    anchor("center"),
+                    pos(k.LAYOUT.width/2, k.LAYOUT.height/2 + options.indexOf(option) * 100),
+                    color(255, 255, 255),
+                    
+                ])
+                return option
+            }
+        )
+        clearOptions = ()=>{
+            options = options.map(
+                option => {
+                    option.opt.use(color(255, 255, 255))
+                    return option
+                }
+            )
+        }
+        current_option = 0
+        options[current_option].opt.use(color(155, 80, 0))
+        background.onKeyPress("up", () => {
+            current_option = (current_option - 1 + options.length) % options.length
+            clearOptions()
+            options[current_option].opt.use(color(155, 80, 0))
+            
+        })
+        background.onKeyPress("down", () => {
+            current_option = (current_option + 1) % options.length
+            clearOptions()
+            options[current_option].opt.use(color(155, 80, 0))
+        })
+        background.onKeyPress('enter',()=>{
+            go(options[current_option].action)
+        })
+        background.add([
+            text(k.GAME_INFOS.GAME_AUTHOR, { size: 30 }),
+            anchor("center"),
+            pos(k.LAYOUT.width/2, k.LAYOUT.height/1.2),
+            color(255, 255, 255),
+        ])
+    },
+    "options" : () => {
+        
+    },
+    "fight" : () => {
+        const background = add([
+            sprite("warzone"),
+            pos(0,0),
+        ])
+    },
+    "choose_character" : () => {
+        
+
+        const background = add([
+            sprite("warzone"),
+            pos(0,0),
+        ])
+        
+        const title_text = background.add([
+            text(k.GAME_TEXTS.TITLE, { size: 40 }),
+            anchor("center"),
+            pos(k.LAYOUT.width/2, k.LAYOUT.height/8),
+            color(255, 255, 255)
+        ])
+        const subtitle_text = background.add([
+            text(k.GAME_TEXTS.SUBTITLE, { size: 30 }),
+            anchor("center"),
+            pos(k.LAYOUT.width/2, k.LAYOUT.height/6),
+        ])
         const select_character_text = background.add([
             text(k.GAME_TEXTS.SELECT_CHARACTER, { size: 80 }),
             anchor("center"),
@@ -76,6 +161,23 @@ k.SCENES = {
         k.player_2_cursor.flipX = k.player_2_cursor.dataFlipX
         k.player_2_cursor.play("idle")
 
+
+
+        const readyToFight = () => 
+        {
+            k.player_1_cursor.use(sprite(k.CHARACTER_SPRITES[k.player_1_cursor.name].replace('_idle','_attack1')))
+            k.player_2_cursor.use(sprite(k.CHARACTER_SPRITES[k.player_2_cursor.name].replace('_idle','_attack1')))
+            k.player_1_cursor.flipX = k.player_1_cursor.dataFlipX
+            k.player_2_cursor.flipX = k.player_2_cursor.dataFlipX
+            k.player_1_cursor.play('attack_1')
+            k.player_2_cursor.play('attack_1')
+            setTimeout(
+                ()=>{
+                    go("fight")
+                },2000
+            )
+        }
+
         background.onButtonPress("PLAYER_1_LEFT", () => {
             if(!k.player_1_cursor.selected == true)
             {
@@ -105,6 +207,10 @@ k.SCENES = {
             k.player_1_cursor.cursor_name.use(
                 color(255, 0, 0)
             )
+            if(k.player_2_cursor.selected == true)
+            {
+                readyToFight()
+            }
             // player_1_cursor.play('attack_1')
         })
         background.onButtonPress("PLAYER_2_JUMP",()=>{
@@ -112,16 +218,11 @@ k.SCENES = {
             k.player_2_cursor.cursor_name.use(
                 color(255, 0, 0)
             )
+            if(k.player_1_cursor.selected == true)
+            {
+                readyToFight()
+            }
         })
-    },
-    "options" : () => {
-        
-    },
-    "fight" : () => {
-        
-    },
-    "choose_character" : () => {
-        
     },
     "credits" : () => {
         

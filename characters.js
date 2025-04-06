@@ -79,6 +79,7 @@ k.switchCursorSprite = (cursor,charactername) => {
     if(spritename)
     {
         cursor.use(sprite(spritename))
+        cursor.name = charactername
         cursor.cursor_name.text = charactername
     }
 }
