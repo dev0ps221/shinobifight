@@ -190,7 +190,7 @@ k.makeCharacter = (data,parent=null)=>{
                 setTimeout(
                     ()=>{
                         const xMargin   = (character.flipX ? -1 : 1) * (character.width / 2)
-                        const xPos      = (character.flipX ? -1 : 0) * (character.width) + xMargin
+                        const xPos      = ((character.flipX ? -1 : 0) * (character.width)) + xMargin
                         character.attack = add(
                             [
                                 area({shape:new Rect(vec2(0),character.width,character.height)}),
