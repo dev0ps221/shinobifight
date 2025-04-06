@@ -1,4 +1,6 @@
-kaplay()
+kaplay({
+
+})
 
 const k = {
     options:{},
@@ -22,12 +24,12 @@ k.loadCharacterSprites  = ()=> {
     loadSprite('Fighter_dead','Fighter/Dead.png',{
         sliceX:3,
         sliceY:1,
-        anims:{'dead':{from:0,to:2,loop:true}}
+        anims:{'dead':{from:0,to:2,loop:false}}
     })
     loadSprite('Fighter_hurt','Fighter/Hurt.png',{
         sliceX:3,
         sliceY:1,
-        anims:{'hurt':{from:0,to:2,loop:true}}
+        anims:{'hurt':{from:0,to:2,loop:false}}
     })
     loadSprite('Fighter_jump','Fighter/Jump.png',{
         sliceX:10,
@@ -42,17 +44,17 @@ k.loadCharacterSprites  = ()=> {
     loadSprite('Fighter_attack_1','Fighter/Attack_1.png',{
         sliceX:4,
         sliceY:1,
-        anims:{'attack_1':{from:0,to:3}}
+        anims:{'attack_1':{from:0,to:3,loop:false}}
     })
     loadSprite('Fighter_attack_2','Fighter/Attack_2.png',{
         sliceX:3,
         sliceY:1,
-        anims:{'attack_2':{from:0,to:2}}
+        anims:{'attack_2':{from:0,to:2,loop:false}}
     })
     loadSprite('Fighter_attack_3','Fighter/Attack_3.png',{
         sliceX:4,
         sliceY:1,
-        anims:{'attack_3':{from:0,to:3}}
+        anims:{'attack_3':{from:0,to:3,loop:false}}
     })
 
     loadSprite('Shinobi_idle','Shinobi/Idle.png',{
@@ -73,17 +75,17 @@ k.loadCharacterSprites  = ()=> {
     loadSprite('Shinobi_dead','Shinobi/Dead.png',{
         sliceX:4,
         sliceY:1,
-        anims:{'dead':{from:0,to:3,loop:true}}
+        anims:{'dead':{from:0,to:3,loop:false}}
     })
     loadSprite('Shinobi_hurt','Shinobi/Hurt.png',{
         sliceX:2,
         sliceY:1,
-        anims:{'hurt':{from:0,to:1,loop:true}}
+        anims:{'hurt':{from:0,to:1,loop:false}}
     })
     loadSprite('Shinobi_jump','Shinobi/Jump.png',{
-        sliceX:10,
+        sliceX:12,
         sliceY:1,
-        anims:{'jump':{from:0,to:9,loop:true}}
+        anims:{'jump':{from:0,to:11,loop:true}}
     })
     loadSprite('Shinobi_shield','Shinobi/Shield.png',{
         sliceX:4,
@@ -93,17 +95,17 @@ k.loadCharacterSprites  = ()=> {
     loadSprite('Shinobi_attack_1','Shinobi/Attack_1.png',{
         sliceX:5,
         sliceY:1,
-        anims:{'attack_1':{from:0,to:4}}
+        anims:{'attack_1':{from:0,to:4,loop:false}}
     })
     loadSprite('Shinobi_attack_2','Shinobi/Attack_2.png',{
         sliceX:3,
         sliceY:1,
-        anims:{'attack_2':{from:0,to:2}}
+        anims:{'attack_2':{from:0,to:2,loop:false}}
     })
     loadSprite('Shinobi_attack_3','Shinobi/Attack_3.png',{
         sliceX:4,
         sliceY:1,
-        anims:{'attack_3':{from:0,to:3}}
+        anims:{'attack_3':{from:0,to:3,loop:false}}
     })
 }
 k.loadAssets            = () => {
@@ -184,13 +186,13 @@ k.defineConstants       = () => {
             keyboard : ["up"]
         },
         PLAYER_2_ATTACK_1:{
-            keyboard : ["shift"]
+            keyboard : ["j"]
         },
         PLAYER_2_ATTACK_2:{
-            keyboard : ["/"]
+            keyboard : ["k"]
         },
         PLAYER_2_ATTACK_3:{
-            keyboard : ["."]
+            keyboard : ["l"]
         },
     }
 
@@ -245,5 +247,5 @@ k.init                  = () => {
     k.defineOptions()
     k.loadAssets()
     k.initScenes()
-    setGravity(1200)
+    setGravity(2000)
 }

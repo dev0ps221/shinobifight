@@ -76,6 +76,7 @@ k.SCENES = {
         
     },
     "fight" : () => {
+        k.winner = null
         const background = add([
             sprite("warzone"),
             pos(0,0),
@@ -105,7 +106,8 @@ k.SCENES = {
         const player_2 = k.makePlayer({...k.player_2_data},background)
         k.player_1 = player_1
         k.player_2 = player_2
-        player_2.flipX = player_2.dataFlipX;
+        player_2.dataFlipX = true;
+        player_2.flipX = true;
 
         ['1','2'].forEach(
             player=>{
@@ -157,25 +159,50 @@ k.SCENES = {
                 k['player_'+player].onAnimEnd(
                     (anim)=>{
                         console.info('animend',anim)
-                        if(anim.match('attack'))
+                        if(anim.match('attack') || anim.match('hurt'))
                         {
+                            if(anim.match('attack') && k['player_'+player].is_jumping)
+                            {
+                                k['player_'+player].Jump()
+                                return 
+                            }
                             k['player_'+player].Idle()
                         }
                     }
                 )
+                ennemy_player = player == 1 ? 2 : 1
+                const collide = ()=>{
+                    if(!k.winner)
+                    {
+                        if(k['player_'+ennemy_player].attack)
+                        {
+                            k['player_'+ennemy_player].attack.destroy()
+                        }
+                        k['player_'+player].Hurt()
+                        k['player_'+player].health -= k['player_'+ennemy_player].strength
+                        if(k['player_'+player].health<=0)
+                        {
+                            k['player_'+player].Die()
+                            k.winner = k['player_'+ennemy_player]
+                        }
+                    }
+                }
+                [1,2,3].forEach(
+                    (number)=>{
+                        k['player_'+player].onCollide(
+                            k['player_'+ennemy_player].playername+'attack_'+number ,
+                            ()=>collide()
+                        )
+                    }
+                )
             }
         );
-
-
     },
     "choose_character" : () => {
-        
-
         const background = add([
             sprite("warzone"),
             pos(0,0),
         ])
-        
         const title_text = background.add([
             text(k.GAME_TEXTS.TITLE, { size: 40 }),
             anchor("center"),
